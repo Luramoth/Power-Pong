@@ -3,6 +3,7 @@ package;
 import flixel.util.FlxColor;
 import flixel.FlxSprite;
 import flixel.FlxG;
+import flixel.math.FlxMath;
 
 enum PlayerType
 {
@@ -88,6 +89,8 @@ class Paddle extends FlxSprite
 
 			velocity.setPolarDegrees(Speed, newAngle);
 		}
+
+		this.y = FlxMath.bound(this.y, 0, 480 - 50);
 	}
 
 	override function update(elapsed)
