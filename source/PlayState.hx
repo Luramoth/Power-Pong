@@ -1,5 +1,6 @@
 package;
 
+import flixel.FlxG;
 import flixel.FlxState;
 
 class PlayState extends FlxState
@@ -14,6 +15,14 @@ class PlayState extends FlxState
 
 		add(player1);
 		add(player2);
+
+		#if debug
+		FlxG.watch.add(player1, "x", "player 1 x");
+		FlxG.watch.add(player1, "y", "player 1 y");
+
+		FlxG.watch.add(player2, "x", "player 2 x");
+		FlxG.watch.add(player2, "y", "player 2 y");
+		#end
 
 		super.create();
 	}
