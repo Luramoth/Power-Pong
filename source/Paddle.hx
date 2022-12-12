@@ -4,13 +4,23 @@ import flixel.util.FlxColor;
 import flixel.FlxSprite;
 import flixel.FlxG;
 
+enum PlayerType
+{
+	Player1;
+	Player2;
+}
+
 class Paddle extends FlxSprite
 {
 	public var Speed:Float = 500;
 
-	public function new(x, y)
+	public var type:PlayerType;
+
+	public function new(x, y, type:PlayerType)
 	{
 		super(x, y);
+
+		this.type = type;
 
 		makeGraphic(10, 50, FlxColor.WHITE);
 
@@ -24,10 +34,20 @@ class Paddle extends FlxSprite
 		var left:Bool = false;
 		var right:Bool = false;
 
-		up = FlxG.keys.anyPressed([UP, W]);
-		down = FlxG.keys.anyPressed([DOWN, S]);
-		left = FlxG.keys.anyPressed([LEFT, A]);
-		right = FlxG.keys.anyPressed([RIGHT, D]);
+		if (this.type == Player1)
+		{
+			up = FlxG.keys.anyPressed([W]);
+			down = FlxG.keys.anyPressed([S]);
+			left = FlxG.keys.anyPressed([A]);
+			right = FlxG.keys.anyPressed([D]);
+		}
+		else
+		{
+			up = FlxG.keys.anyPressed([UP]);
+			down = FlxG.keys.anyPressed([DOWN]);
+			left = FlxG.keys.anyPressed([LEFT]);
+			right = FlxG.keys.anyPressed([RIGHT]);
+		}
 
 		if (up && down)
 			up = down = false;
