@@ -16,6 +16,8 @@ class Paddle extends FlxSprite
 
 	public var type:PlayerType;
 
+	public var axisLocked:Bool = true;
+
 	public function new(x, y, type:PlayerType)
 	{
 		super(x, y);
@@ -38,15 +40,21 @@ class Paddle extends FlxSprite
 		{
 			up = FlxG.keys.anyPressed([W]);
 			down = FlxG.keys.anyPressed([S]);
-			left = FlxG.keys.anyPressed([A]);
-			right = FlxG.keys.anyPressed([D]);
+			if (!axisLocked)
+			{
+				left = FlxG.keys.anyPressed([A]);
+				right = FlxG.keys.anyPressed([D]);
+			}
 		}
 		else
 		{
 			up = FlxG.keys.anyPressed([UP]);
 			down = FlxG.keys.anyPressed([DOWN]);
-			left = FlxG.keys.anyPressed([LEFT]);
-			right = FlxG.keys.anyPressed([RIGHT]);
+			if (!axisLocked)
+			{
+				left = FlxG.keys.anyPressed([LEFT]);
+				right = FlxG.keys.anyPressed([RIGHT]);
+			}
 		}
 
 		if (up && down)
