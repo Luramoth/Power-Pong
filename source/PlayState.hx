@@ -1,5 +1,7 @@
 package;
 
+import flixel.util.FlxColor;
+import flixel.FlxSprite;
 import haxe.ds.BalancedTree;
 import flixel.FlxG;
 import flixel.FlxState;
@@ -11,14 +13,22 @@ class PlayState extends FlxState
 
 	var ball:Ball;
 
+	var line:Line;
+
 	override public function create()
 	{
+		// create center line
+		line = new Line(320, 0);
+
 		// create ball
 		ball = new Ball(315, 235);
 
 		// create player 1 and 2
 		player1 = new Paddle(20, 240 - 25, Player1);
 		player2 = new Paddle(610, 240 - 25, Player2);
+
+		// add line
+		add(line);
 
 		// add ball
 		add(ball);
@@ -48,5 +58,15 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
+	}
+}
+
+class Line extends FlxSprite
+{
+	public function new(x, y)
+	{
+		super(x, y);
+
+		makeGraphic(1, 480, FlxColor.WHITE);
 	}
 }
