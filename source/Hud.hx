@@ -14,10 +14,11 @@ class HUD extends FlxTypedGroup<FlxSprite>
 	{
 		super();
 
-		p1Score = new FlxText(0, 0, 0, "0", 64);
+		p1Score = new FlxText(137, 0, 0, "0", 64);
+		p1Score.alignment = FlxTextAlign.CENTER;
 
-		p2Score = new FlxText(600, 0, 0, "0", 64);
-		p2Score.alignment = FlxTextAlign.LEFT;
+		p2Score = new FlxText(452, 0, 0, "0", 64);
+		p2Score.alignment = FlxTextAlign.CENTER;
 
 		add(p1Score);
 		add(p2Score);
