@@ -19,11 +19,17 @@ class Paddle extends FlxSprite
 
 	public var axisLocked:Bool = true;
 
+	var boundXMax: Float;
+	var boundXMin: Float;
+
 	public function new(x, y, type:PlayerType)
 	{
 		super(x, y);
 
 		this.type = type;
+
+		boundXMax = if (this.type == Player1) 300 else 620;
+		boundXMin = if (this.type == Player1) 20 else 320;
 
 		makeGraphic(10, 50, FlxColor.WHITE);
 
@@ -91,6 +97,7 @@ class Paddle extends FlxSprite
 		}
 
 		this.y = FlxMath.bound(this.y, 0, 480 - 50);
+		this.x = FlxMath.bound(this.x, boundXMin, boundXMax);
 	}
 
 	override function update(elapsed)
