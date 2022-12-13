@@ -43,11 +43,11 @@ class Paddle extends FlxSprite
 		var left:Bool = false;
 		var right:Bool = false;
 
-		if (this.type == Player1)
+		if (this.type == Player1)// change bindings based on what player type current class is
 		{
 			up = FlxG.keys.anyPressed([W]);
 			down = FlxG.keys.anyPressed([S]);
-			if (!axisLocked)
+			if (!axisLocked)// if axis lock is enabled then dont even read other binds
 			{
 				left = FlxG.keys.anyPressed([A]);
 				right = FlxG.keys.anyPressed([D]);
@@ -64,12 +64,13 @@ class Paddle extends FlxSprite
 			}
 		}
 
+		// cancel out keypresses that cancel eachother out (pressing left and right at the same time and etc..)
 		if (up && down)
 			up = down = false;
 		if (left && right)
 			left = right = false;
 
-		if (up || down || left || right)
+		if (up || down || left || right)// pseudo "normalise" the movement direction based on inputs
 		{
 			var newAngle:Float = 0;
 			if (up)
@@ -93,9 +94,10 @@ class Paddle extends FlxSprite
 			else if (right)
 				newAngle = 0;
 
-			velocity.setPolarDegrees(Speed, newAngle);
+			velocity.setPolarDegrees(Speed, newAngle);// actually move the player
 		}
 
+		// clamp the value so player cant just run out the screen
 		this.y = FlxMath.bound(this.y, 0, 480 - 50);
 		this.x = FlxMath.bound(this.x, boundXMin, boundXMax);
 	}
@@ -106,3 +108,4 @@ class Paddle extends FlxSprite
 		super.update(elapsed);
 	}
 }
+// why are you down here wierdo
