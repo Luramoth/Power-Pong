@@ -1,5 +1,6 @@
 package;
 
+import haxe.ds.BalancedTree;
 import flixel.FlxG;
 import flixel.FlxState;
 
@@ -8,13 +9,21 @@ class PlayState extends FlxState
 	var player1:Paddle;
 	var player2:Paddle;
 
+	var ball:Ball;
+
 	override public function create()
 	{
+		// create ball
+		ball = new Ball(315, 235);
+
 		// create player 1 and 2
 		player1 = new Paddle(20, 240 - 25, Player1);
 		player2 = new Paddle(610, 240 - 25, Player2);
 
-		// add them to the game
+		// add ball
+		add(ball);
+
+		// add players to the game
 		add(player1);
 		add(player2);
 
