@@ -18,13 +18,19 @@ class PlayState extends FlxState
 		add(player1);
 		add(player2);
 
-		// fbi
 		#if debug
+		//fbi
 		FlxG.watch.add(player1, "x", "player 1 x");
 		FlxG.watch.add(player1, "y", "player 1 y");
 
 		FlxG.watch.add(player2, "x", "player 2 x");
 		FlxG.watch.add(player2, "y", "player 2 y");
+
+		// console command to make the paddles move around freely
+		FlxG.console.registerFunction("free", function(){
+			player1.axisLocked = false;
+			player2.axisLocked = false;
+		});
 		#end
 
 		super.create();
