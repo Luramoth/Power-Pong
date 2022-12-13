@@ -1,6 +1,7 @@
 package;
 
-import Main.stop;
+import flixel.util.FlxTimer;
+import Hud.HUD;
 import flixel.util.FlxColor;
 import flixel.FlxSprite;
 import flixel.FlxG;
@@ -15,6 +16,8 @@ class PlayState extends FlxState
 
 	var line:Line;
 
+	var hud:HUD;
+
 	function hitBall(player:Paddle, ball:Ball)
 	{
 		if (player == player1)
@@ -27,6 +30,9 @@ class PlayState extends FlxState
 
 	override public function create()
 	{
+		// create hud
+		hud = new HUD();
+
 		// create center line
 		line = new Line(320, 0);
 
@@ -36,6 +42,9 @@ class PlayState extends FlxState
 		// create player 1 and 2
 		player1 = new Paddle(20, 240 - 25, Player1);
 		player2 = new Paddle(610, 240 - 25, Player2);
+
+		// add hud
+		add(hud);
 
 		// add line
 		add(line);
