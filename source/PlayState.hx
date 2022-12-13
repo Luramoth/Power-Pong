@@ -28,6 +28,22 @@ class PlayState extends FlxState
 		ball.moveAngle = 180 - ball.moveAngle + FlxG.random.int(-10, 10);
 	}
 
+	function scored()
+	{
+		var timer:FlxTimer =  new FlxTimer().start(1, reset);
+
+		Main.stop = true;
+
+		hud.updateHUD(player1.score, player2.score);
+	}
+
+	function reset(timer:FlxTimer)
+	{
+		ball.resetBall();
+
+		Main.stop = false;
+	}
+
 	override public function create()
 	{
 		// create hud
@@ -88,13 +104,13 @@ class PlayState extends FlxState
 			{
 				player2.score++;
 
-				Main.stop = true;
+				scored();
 			}
 			else if (ball.x >= 640)
 			{
 				player1.score++;
 
-				Main.stop = true;
+				scored();
 			}
 		}
 

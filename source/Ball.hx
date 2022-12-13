@@ -15,6 +15,14 @@ class Ball extends FlxSprite
 
 	public var lastPlayer:PlayerType;
 
+	public function resetBall()
+	{
+		this.x = 315;
+		this.y = 235;
+
+		moveAngle = FlxG.random.int(-180, 180);
+	}
+
 	public function new(x, y)
 	{
 		super(x, y);
