@@ -1,9 +1,8 @@
 package;
 
-import flixel.math.FlxRandom;
+import Main.stop;
 import flixel.util.FlxColor;
 import flixel.FlxSprite;
-import haxe.ds.BalancedTree;
 import flixel.FlxG;
 import flixel.FlxState;
 
@@ -52,9 +51,13 @@ class PlayState extends FlxState
 		//fbi
 		FlxG.watch.add(player1, "x", "player 1 x");
 		FlxG.watch.add(player1, "y", "player 1 y");
+		FlxG.watch.add(player1, "score", "player 1 score");
 
 		FlxG.watch.add(player2, "x", "player 2 x");
 		FlxG.watch.add(player2, "y", "player 2 y");
+		FlxG.watch.add(player2, "score", "player 2 score");
+
+		FlxG.watch.add(ball, "lastPlayer", "last player hit");
 
 		// console command to make the paddles move around freely
 		FlxG.console.registerFunction("free", function(){
@@ -69,6 +72,22 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		if (!Main.stop)
+		{
+			if (ball.x <= 0)
+			{
+				player2.score++;
+
+				Main.stop = true;
+			}
+			else if (ball.x >= 640)
+			{
+				player1.score++;
+
+				Main.stop = true;
+			}
+		}
 
 		FlxG.collide(player1, ball, hitBall);
 		FlxG.collide(player2, ball, hitBall);

@@ -19,6 +19,8 @@ class Paddle extends FlxSprite
 
 	public var axisLocked:Bool = true;
 
+	public var score:Int = 0;
+
 	var boundXMax: Float;
 	var boundXMin: Float;
 
@@ -104,7 +106,10 @@ class Paddle extends FlxSprite
 
 	override function update(elapsed)
 	{
-		updateMovement();
+		if (!Main.stop)
+		{
+			updateMovement();
+		}
 		super.update(elapsed);
 	}
 }

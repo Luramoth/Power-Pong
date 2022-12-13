@@ -27,13 +27,16 @@ class Ball extends FlxSprite
 
 	override public function update(elapsed)
 	{
-		if (this.y <= 0 || this.y >= 470)
+		if (!Main.stop)
 		{
-			moveAngle = 360 - moveAngle;
-		}
+			if (this.y <= 0 || this.y >= 470)
+			{
+				moveAngle = 360 - moveAngle;
+			}
 
-		// move
-		velocity.setPolarDegrees(Speed, moveAngle);
+			// move
+			velocity.setPolarDegrees(Speed, moveAngle);
+		}
 
 		super.update(elapsed);
 	}
