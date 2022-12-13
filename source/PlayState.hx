@@ -1,5 +1,6 @@
 package;
 
+import flixel.math.FlxRandom;
 import flixel.util.FlxColor;
 import flixel.FlxSprite;
 import haxe.ds.BalancedTree;
@@ -22,7 +23,7 @@ class PlayState extends FlxState
 		else
 			ball.lastPlayer = Player2;
 
-		ball.moveAngle = 180 - ball.moveAngle;
+		ball.moveAngle = 180 - ball.moveAngle + FlxG.random.int(-10, 10);
 	}
 
 	override public function create()
