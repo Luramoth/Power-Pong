@@ -1,6 +1,7 @@
 //balls
 package;
 
+import Paddle.PlayerType;
 import flixel.FlxG;
 import flixel.math.FlxRandom;
 import flixel.util.FlxColor;
@@ -8,9 +9,11 @@ import flixel.FlxSprite;
 
 class Ball extends FlxSprite
 {
-	var moveAngle:Int;
+	public var moveAngle:Int;
 
 	public var Speed:Float = 300;
+
+	public var lastPlayer:PlayerType;
 
 	public function new(x, y)
 	{

@@ -15,6 +15,16 @@ class PlayState extends FlxState
 
 	var line:Line;
 
+	function hitBall(player:Paddle, ball:Ball)
+	{
+		if (player == player1)
+			ball.lastPlayer = Player1;
+		else
+			ball.lastPlayer = Player2;
+
+		ball.moveAngle = 180 - ball.moveAngle;
+	}
+
 	override public function create()
 	{
 		// create center line
@@ -58,6 +68,9 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		FlxG.collide(player1, ball, hitBall);
+		FlxG.collide(player2, ball, hitBall);
 	}
 }
 
