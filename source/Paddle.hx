@@ -35,7 +35,7 @@ class Paddle extends FlxSprite
 
 	public var type:PlayerType;
 
-	public var axisLocked:Bool = true;
+	public var axisLocked:Bool = false;
 
 	public var score:Int = 0;
 
